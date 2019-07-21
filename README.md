@@ -6,9 +6,10 @@ There are 4 steps involved in this data collection:
     1. Load the images onto the FLIR Tools database
     2. Move cursor to specified grid point
     3. Record temerature shown
-    4. Save data in matrix
+    4. Save data(matrix) as text file
+    5. Move to next image
 
-This code automates step 2 through step 4. 
+This code automates step 2 through step 5. 
 
 **Packages Required:**
 
