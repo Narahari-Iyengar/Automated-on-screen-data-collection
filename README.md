@@ -10,7 +10,7 @@ There are 4 steps involved in this data collection:
 
 This code automates step 2 through step 4. 
 
-Packages Required:
+**Packages Required:**
 
         Pillow
         Numpy
