@@ -19,6 +19,8 @@ This code automates step 2 through step 5.
         Pyautogui
         cv2
         Pynput
+        Imutils
+        Time
       
 
 
