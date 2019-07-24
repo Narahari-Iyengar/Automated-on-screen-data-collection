@@ -134,26 +134,6 @@ def go_to_next():
 	pyg.moveTo(x,y,0.5)
 	pyg.click()
 
-	# rotate_step1 = load_file('rotate_step1')
-	# x,y = rotate_step1
-	# pyg.moveTo(x,y,0.5)
-	# pyg.click()
-
-	# rotate_step2 = load_file('rotate_step2')
-	# x,y = rotate_step2
-	# pyg.moveTo(x,y,0.5)
-	# pyg.click()
-
-	# rotate_step1 = load_file('rotate_step1')
-	# x,y = rotate_step1
-	# pyg.moveTo(x,y,0.5)
-	# pyg.click()
-
-	# rotate_step2 = load_file('rotate_step2')
-	# x,y = rotate_step2
-	# pyg.moveTo(x,y,0.5)
-	# pyg.click()
-
 	find_marker = load_file('find_marker_FLIR7293')
 	x,y = find_marker
 	pyg.moveTo(x,y,2)
@@ -185,9 +165,8 @@ def main():
 		gx3,gy3 = grid_BRC
 		gx4,gy4 = grid_BLC
 	else:
-		# grid_box_name = input("Enter the name of the file without extension: ")
-		# grid_box_name = grid_box_name + ".txt"
-		grid_box_name = 'grid_FLIR7293.txt'
+		grid_box_name = input("Enter the name of the file without extension: ")
+		grid_box_name = grid_box_name + ".txt"
 		grid_box_matrix = np.loadtxt(open(grid_box_name,"rb"),delimiter=",",skiprows=0)
 		grid_TLC = grid_box_matrix[0,:]
 		grid_TRC = grid_box_matrix[1,:]
@@ -210,9 +189,8 @@ def main():
 		x3,y3 = img_box_BRC
 		x4,y4 = img_box_BLC
 	else:
-		# image_box_name = input("Enter the name of the file without extension: ")
-		# image_box_name = image_box_name +".txt"
-		image_box_name = "image_FLIR6421.txt"
+		image_box_name = input("Enter the name of the file without extension: ")
+		image_box_name = image_box_name +".txt"
 		image_box_matrix = np.loadtxt(open(image_box_name,"rb"),delimiter=",",skiprows=0)
 		img_box_TLC = image_box_matrix[0,:]
 		img_box_TRC = image_box_matrix[1,:]
@@ -222,31 +200,13 @@ def main():
 		x2,y2 = img_box_TRC
 		x3,y3 = img_box_BRC
 		x4,y4 = img_box_BLC
-	
-	# img = get_image(x1,y1,x3,y3)
-	# img = cv2.bitwise_not(img)
-	# bwimage = enhance_image(img)
-	# img = imutils.resize(img,width=45,height=100)
-	# bwimage = imutils.resize(bwimage,width=45,height=100)
-	# # cv2.imshow("inverted",img)
-	# # cv2.imshow("b&w",bwimage)
-	# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-	# O = pytesseract.image_to_string(img)
-	# A = pytesseract.image_to_string(img,config=config)
-	# B = pytesseract.image_to_string(bwimage,config=config)
-	# format_string(O)
-	# format_string(A)
-	# format_string(B)
-	# print("hello")
 
-	# # name = input("What's the name of the file? ")
-	# go_to_next()
+	file = input("What's the name of the file(Last 4 numbers)? ")
 	start_pos = start_position()
-	
-	file = 7293
+	last = input('Enter till which file you want to collect data (Last 4 numbers): ')
 
-	while not file == 7393:
-		A = np.zeros([7,11])
+	while not file == last
+		A = np.zeros([7,11]) #Height,Width of grid
 		height , width = A.shape
 		i = 0
 		j = 0
@@ -258,9 +218,6 @@ def main():
 		
 		while i < height:
 			while j < width:
-				# start = False
-				# while start == False:
-					# start = yes_or_no("\nAre you ready to collect data for segment#(%i,%i)?" %(i,j))
 				
 				time.sleep(2)	
 				img = get_image(x1,y1,x3,y3)
@@ -272,6 +229,7 @@ def main():
 				print(str1)	
 				A[i,j] = format_string(str1)
 
+				#To check if values generated are within threshold
 				correct = False
 				temp_move = 0
 				while not correct:
