@@ -84,10 +84,7 @@ def get_image(x1,y1,x2,y2):
 	# cv2.imshow("img",printscreen_numpy)
 	return printscreen_numpy	
 
-def format_string(str1):
-	# str1 = (str1.split()[0])
-	# str1 = str1.replace("[","")
-	print(str1)
+def format_string(str1): #To extract numbers from OCR
 	str1 = ''.join(x for x in str1 if x.isdigit())
 	if str1:
 		str1 = float(str1)
@@ -96,7 +93,7 @@ def format_string(str1):
 		str1 = 0
 	return str1
 
-def go_to_next():
+def go_to_next(): #To load next image and move cursor to starting position
 	next_image = load_file('next_image')
 	x,y = next_image
 	pyg.moveTo(x,y,1)
@@ -143,7 +140,7 @@ def go_to_next():
 	pyg.dragTo(x,y,3)
 
 
-def enhance_image(img):
+def enhance_image(img): #To convert image to b/w
 	(thresh, bwimage) = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
 	return bwimage
 
@@ -205,7 +202,7 @@ def main():
 	start_pos = start_position()
 	last = input('Enter till which file you want to collect data (Last 4 numbers): ')
 
-	while not file == last
+	while not file == (last + 2)
 		A = np.zeros([7,11]) #Height,Width of grid
 		height , width = A.shape
 		i = 0
