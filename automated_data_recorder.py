@@ -94,61 +94,61 @@ def format_string(str1): #To extract numbers from OCR
 	return str1
 
 def go_to_next(): #To load next image and move cursor to starting position
-	next_image = load_file('next_image')
+	next_image = load_file('next_image') #Location of 'next' arrow on screen
 	x,y = next_image
 	pyg.moveTo(x,y,1)
 	pyg.click()
 
-	yes_FLIR = load_file('yes_FLIR')
+	yes_FLIR = load_file('yes_FLIR') #Location of 'save image' on screed
 	x,y = yes_FLIR
 	pyg.moveTo(x,y,1)
 	pyg.click()
 
 	time.sleep(1)
 
-	normal_image = load_file('normal_image')
+	normal_image = load_file('normal_image') #Location of 'normal image' (Change from thermal image) on screen
 	x,y = normal_image
 	pyg.moveTo(x,y,1)
 	pyg.click()
+	
+	#The image needs to be rotated 180 deg as the image at time of taking is upside-down
 
-	rotate_step1 = load_file('rotate_step1')
+	rotate_step1 = load_file('rotate_step1') #Location of 'rotate' option on screen
 	x,y = rotate_step1
 	pyg.moveTo(x,y,1)
 	pyg.click()
 
-	rotate_step2 = load_file('rotate_step2')
+	rotate_step2 = load_file('rotate_step2') #Location of 'clock-wise rotation' option on screen (Rotates 90 deg)
 	x,y = rotate_step2
 	pyg.moveTo(x,y,0.5)
 	pyg.click()
 
-	rotate_step1 = load_file('rotate_step1')
+	rotate_step1 = load_file('rotate_step1') #Location of 'rotate' option on screen
 	x,y = rotate_step1
 	pyg.moveTo(x,y,0.5)
 	pyg.click()
 
-	rotate_step2 = load_file('rotate_step2')
+	rotate_step2 = load_file('rotate_step2') #Location of 'clock-wise rotation' option on screen (Rotates 90 deg)
 	x,y = rotate_step2
 	pyg.moveTo(x,y,0.5)
 	pyg.click()
 
-	find_marker = load_file('find_marker_FLIR7293')
+	find_marker = load_file('find_marker_FLIR7293') #Location of 'marker' on screen
 	x,y = find_marker
 	pyg.moveTo(x,y,2)
 	
-	start_pos = load_file('start_pos_FLIR7293')
+	start_pos = load_file('start_pos_FLIR7293') #Location of 'starting position( on grid)' on screen
 	x,y = start_pos
 	pyg.dragTo(x,y,3)
 
 
 def enhance_image(img): #To convert image to b/w
-	(thresh, bwimage) = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+	(thresh, bwimage) = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY) #Convert image to b/w
 	return bwimage
 
 def main():
 	#Configuration for tesseract OCR
 	config = ('-l eng --oem 1 --psm 7')
-	# grid_box_reply = False
-	# img_box_reply = False
 
 	grid_box_reply = yes_or_no("Do you want to select corners of the grid?")
 	if grid_box_reply == True:
@@ -273,7 +273,7 @@ def main():
 					
 			if i == height:
 				# pyg.dragTo(start_pos[0],start_pos[1],4)
-				# print("\nThank you. Your job is done.")
+				# print("\n Image data recorded.")
 				# break
 				file = file + 2
 				go_to_next()
